@@ -1,0 +1,23 @@
+{#from django.contrib.auth import get_user_model#}
+{% extends "users/base.html" %}
+{% block title %} Home Page {% endblock title%}
+{% block content %}
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome, {{user.username}}</h1>
+        <h4>Список пользователей</h4>
+        {% for n in userData %}
+            <p class="lead">
+            <div>{{n.username}}</div><button>Добавить в друзья</button>
+            </p>
+        {% endfor %}
+        <hr class="my-4">
+        <p class="lead">
+            {% if user.is_authenticated %}
+                <a class="btn btn-primary btn-lg" href="{% url 'logout' %}" role="button">Logout</a>
+            {% else %}
+                <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Sign in</a>
+            {% endif %}
+        </p>
+    </div>
+
+{% endblock content %}
